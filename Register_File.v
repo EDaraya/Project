@@ -12,7 +12,7 @@ module register_file(CLK, reg_write, A1, A2, A3, WD3, RD1, RD2);
 	//32 Reg de 32b
 	reg [31:0] reg_file [0:31];	
 	
-	//Inicialización
+	//InicializaciÃ³n
 	initial
 		begin
 			reg_file[0] = 0;

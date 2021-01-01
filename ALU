@@ -1,0 +1,19 @@
+module ALU(RD1, RD2, ALU_CONTROL, ALU_Result);
+      input [31:0] RD1;
+      input [31:0] RD2;
+      input [2:0] ALU_CONTROL;
+      output [31:0]ALU_Result;
+      reg [31:0] ALU_Result;
+
+      always@(RD1 or RD2 or ALU_CONTROL)
+          begin
+               case (ALU_CONTROL)
+                  3'b000:  ALU_Result = RD1 & RD2;   // AND
+                  3'b001:  ALU_Result = RD1 | RD2;   // OR
+						      3'b010:  ALU_Result = RD1 ^ RD2;   // XOR
+                  3'b011:  ALU_Result = RD1 +  RD2;    // SUMA
+                  3'b100:  ALU_Result = RD1 - RD2;    // REST
+               endcase
+           end
+
+endmodule

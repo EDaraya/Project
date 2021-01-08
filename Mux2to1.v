@@ -9,7 +9,7 @@ module Mux2to1(
 					output reg [31:0] C
 					);
 initial
-	assign C = 32'd0;
+	C = 32'd0;
 always @(*)											//Un case para seleccionador el valor de la salida
 	case(Sel)								//dependiendo del valor del seleccionador.
 		1'b0:	C <= A;		

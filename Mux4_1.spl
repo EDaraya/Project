@@ -1,7 +1,0 @@
-[Inputs]
-=A[7:0]=
-[Outputs]
-[BiDir]
-[ATTRIBUTES]
-VeriModel Mux4_1
-

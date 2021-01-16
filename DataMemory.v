@@ -14,41 +14,47 @@ module DataMemory	(
 						input wire WE,            	// Enable de la escritura.
 						input wire [3:0] BE,       // Byte al cual se habilita la escritura.
 						input wire [31:0] A,      	// Dirección de lectura/escritura. 
-						input wire [31:0] WD,    	// Dato de entrada.
-						output [31:0] RD			  	// Dato a leer de memoria.
+						input wire [31:0] WD,    	// Dato a escribir.
+						output [31:0] RD			  	// Dato a leer de memoria en la A.
 						);
 						
   // Definición de la memoria
-  parameter MEM_DEPTH = 1024;
-  reg [7:0] RAM[3:0][MEM_DEPTH-1:-MEM_DEPTH+1];
+  parameter MEM_DEPTH = 64;
+  reg [7:0] RAM[3:0][MEM_DEPTH:-MEM_DEPTH];
+  // Definición de variable para inicializar valores en la memoria.	
   integer i;
-  // Se inicializan la memoria en 0s.
+  // Procedimiento para el funcionamiento de una instrucción por cada +4 
+  wire [31:0] ADiv4;
+  wire [31:0] Ad;
+  assign ADiv4 = A/4;
+  //	Divido entre cuatro es un LSR, por lo que hay que extender el signo del número.
+  assign Ad = {{2{A[31]}},ADiv4[29:0]};
+  // Se inicializa la memoria en 0s.
   initial
-	  begin
-		for(i=-MEM_DEPTH+1;i<MEM_DEPTH;i=i+1)
-			RAM[0][i] = 32'd0;
-		for(i=-MEM_DEPTH+1;i<MEM_DEPTH;i=i+1)
-			RAM[1][i] = 32'd0;
-		for(i=-MEM_DEPTH+1;i<MEM_DEPTH;i=i+1)
-			RAM[2][i] = 32'd0;
-		for(i=-MEM_DEPTH+1;i<MEM_DEPTH;i=i+1)
-			RAM[3][i] = 32'd0;
-	  end  
-  // Lectura de un dato.(síncrona)	
-  assign RD = {RAM[3][A],RAM[2][A],RAM[1][A],RAM[0][A]};
-  // Escritura de un dato.(asíncrona)
-  always @(posedge clk) 							
+		for(i=(-MEM_DEPTH);i<(MEM_DEPTH+1);i=i+1)
+			begin
+				RAM[0][i] = 8'b0;
+				RAM[1][i] = 8'b0;
+				RAM[2][i] = 8'b0;
+				RAM[3][i] = 8'b0;
+			end 
+	// Lectura de un dato.(asíncrona)	
+	assign RD = {RAM[3][Ad],RAM[2][Ad],RAM[1][Ad],RAM[0][Ad]};
+	// Escritura de un dato.(síncrona)
+	always @(negedge clk) 		
 		if(WE == 1)
+	// Se escribe un byte.(sb)
 			case(BE)
-				4'b0001: RAM[0][A] <= WD[7:0];	// Byte 0
-				4'b0010: RAM[1][A] <= WD[7:0];	// Byte 1
-				4'b0100: RAM[2][A] <= WD[7:0];	// Byte 2
-				4'b1000: RAM[3][A] <= WD[7:0];	// Byte 3
+				4'b0001: RAM[0][Ad] <= WD[7:0];			// Byte 0
+				4'b0010: RAM[1][Ad] <= WD[15:8];			// Byte 1
+				4'b0100: RAM[2][Ad] <= WD[23:16];		// Byte 2
+				4'b1000: RAM[3][Ad] <= WD[31:24];		// Byte 3
+	// Por defecto se escriben todos los bytes.(sw)
 				default:	begin
-								RAM[0][A] <= WD[7:0];
-								RAM[1][A] <= WD[15:8];
-								RAM[2][A] <= WD[23:16];
-								RAM[3][A] <= WD[31:24];
+								RAM[0][Ad] <= WD[7:0];
+								RAM[1][Ad] <= WD[15:8];
+								RAM[2][Ad] <= WD[23:16];
+								RAM[3][Ad] <= WD[31:24];
 							end
 			endcase
 endmodule

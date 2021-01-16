@@ -14,7 +14,7 @@ Procedimiento:
 				5'b00000:	ADD => RD1 + RD2 y se guarda en Result, Result = 32'd8.
 				5'b00010:	SUB => RD1 - RD2 y se guarda en Result, Result = 32'd2.
 				5'b00100:	SLL => RD1 << RD2 y se guarda en Result, Result = 32'd40.
-				5'b10000:	XOR => RD1 ^ RD2 y se guarda en Result, Result = 32d'6. 
+				5'b10000:	XOR => RD1 ^ RD2 y se guarda en Result, Result = 32'd6. 
 				5'b10100: 	SRL => RD1 >> RD2  y se guarda en Result, Result = 32'd0.
 				5'b10110:	SRA => RD1 >>> RD2 y se guarda en Result, Result = 32'd0. 
 				5'b11100:	AND => RD1 & RD2 y se guarda en Result, Result = 32'd1. 
@@ -36,7 +36,7 @@ CASO #3
 				5'b00000:	ADD => RD1 + RD2 y se guarda en Result, Result = 32'd10.
 				5'b00010:	SUB => RD1 - RD2 y se guarda en Result, Result = 32'd0.
 				5'b00100:	SLL => RD1 << RD2 y se guarda en Result, Result = 32'd160.
-				5'b10000:	XOR => RD1 ^ RD2 y se guarda en Result, Result = 32d'0. 
+				5'b10000:	XOR => RD1 ^ RD2 y se guarda en Result, Result = 32'd0. 
 				5'b10100: 	SRL => RD1 >> RD2  y se guarda en Result, Result = 32'd0.
 				5'b10110:	SRA => RD1 >>> RD2 y se guarda en Result, Result = 32'd0. 
 				5'b11100:	AND => RD1 & RD2 y se guarda en Result, Result = 32'd5. 
@@ -51,7 +51,6 @@ module AluTb;
 	// Outputs
 	wire [31:0] ALU_Result;
 	wire Zero;
-	integer i;
 	// Instantiate the Unit Under Test (uut)
 	Alu uut (
 		.RD1(RD1), 
@@ -60,33 +59,33 @@ module AluTb;
 		.ALU_Result(ALU_Result), 
 		.Zero(Zero)
 	);
+	integer i;
 	initial 
-	begin
-		// Initialize Inputs
-		RD1= 5;
-		RD2 = 3;
-		ALU_Control = 5'b00000;
-		// Add stimulus here
-		for (i=0; i<32; i=i+1)
-			begin
-			#50 ALU_Control = ALU_Control + 5'b00001;
-			end
-		////////////////////////////////////////////
-		RD1 = 5;
-		RD2 = 8;
-		ALU_Control = 5'b00000;
-		for (i=0; i<32; i=i+1)
-			begin
-			#50 ALU_Control = ALU_Control + 5'b00001;
-			end
-		////////////////////////////////////////////
-		RD1 = 5;
-		RD2 = 5;
-		ALU_Control = 5'b00000;
-		for (i=0; i<32; i=i+1)
-			begin
-			#50 ALU_Control = ALU_Control + 5'b00001;
-			end
-	end
+		begin
+			// Initialize Inputs
+			RD1= 0;
+			RD2 = 0;
+			ALU_Control = 0;
+			// Wait 100 ns for global reset to finish
+			#100;
+			// Add stimulus here
+			RD1= 5;
+			RD2 = 3;
+			ALU_Control = 5'b00000;
+			for (i=0; i<32; i=i+1)
+				#50 ALU_Control = ALU_Control + 5'b00001;
+			////////////////////////////////////////////
+			RD1 = 5;
+			RD2 = 8;
+			ALU_Control = 5'b00000;
+			for (i=0; i<32; i=i+1)
+				#50 ALU_Control = ALU_Control + 5'b00001;
+			////////////////////////////////////////////
+			RD1 = 5;
+			RD2 = 5;
+			ALU_Control = 5'b00000;
+			for (i=0; i<32; i=i+1)
+				#50 ALU_Control = ALU_Control + 5'b00001;
+		end
 endmodule
 

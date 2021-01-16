@@ -23,44 +23,61 @@ module DataMemoryTb;
 	// Instantiate the Unit Under Test (uut)
 	DataMemory uut (
 		.clk(clk), 
-		.A(A), 
 		.WE(WE), 
 		.BE(BE),
+		.A(A), 
 		.WD(WD),
 		.RD(RD)
 	);
 	initial 
 		begin
 			// Initialize Inputs
-			#15
-			clk = 1;
+			clk = 0;
+			WE = 0;
+			BE = 4'b0000;
 			A = 0;
+			WD = 0;
+			// Wait 100 ns for global reset to finish
+			#100
+			// Add stimulus here
 			WE = 1;
 			BE = 4'b1000;
+			A = 0;
 			WD = 255;
+			
 			#15;		
 			WE = 0;
 			#15;
-			A = 1;
+			
 			WE = 1;
 			BE = 4'b0100;
 			WD = 255;
+			
 			#15;
 			WE=0;
 			#15;
-			A = 2;
+			
 			WE = 1;
 			BE = 4'b0010;
 			WD = 255;
+			
 			#15;
 			WE=0;
 			#15;
-			A = 3;
+			
 			WE = 1;
 			BE = 4'b0001;
 			WD = 255;
+			
+			#15;
+			WE=0;
+			#15;
+			
+			WE = 1;
+			BE = 4'b0000;
+			A = 4;
+			WD = -255;
 		end
    always 
-		#5 clk =! clk;
+		#5 clk=!clk;
 endmodule
-

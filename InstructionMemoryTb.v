@@ -24,10 +24,11 @@ module InstructionMemoryTb;
 	initial 
 		begin
 			// Initialize Inputs
-			#15;
 			A = 0;
-			//A = 48;
-			for(i=1;i<100;i=i+1)
+			// Wait 100 ns for global reset to finish
+			#100
+			// Add stimulus here
+			for(i=1;i<61;i=i+1)
 				begin
 					A=A+1;
 					#2;

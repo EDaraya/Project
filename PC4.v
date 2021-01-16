@@ -1,9 +1,11 @@
 `timescale 1ns / 1ps
-
-//Entrada: PC
-//Salida: PC4 
-//Procedimiento: Se le suma al valor de PC 4 entonces queda guardado en PC+4.
-
+// Bloque del sumador que genera el valor de PC+4
+// Entrada: PC
+// Salida: PC4 
+/* 
+	Procedimiento: 
+	Se le suma al PC el valor de 4 y a la salida PC4 se le asigna dicho resultado.
+*/
 module PC4	( 
 				input wire  [31:0] PC,
 				output wire [31:0] PC4

@@ -46,25 +46,34 @@ module JumpControlTb;
 			ForceJump = 0;
 			Branch = 0;
 			Zero = 0;
-
 			// Wait 100 ns for global reset to finish
 			#100;     
 			// Add stimulus here
+			// ForceJump = 0 y Branch = 0
 			Funct3 = 3'b111;
 			ForceJump = 1'b0;
 			Branch = 1'b0;
 			Zero = 1'b1;
 			#10
+			// ForceJump = 1 y Branch = 0
 			Funct3 = 3'b000;
 			ForceJump = 1'b1;
 			Branch = 1'b0;
 			Zero = 1'b1;
 			#10
+			// ForceJump = 0 y Branch = 1 y se cumple condicional
 			Funct3 = 3'b000;
 			ForceJump = 1'b0;
 			Branch = 1'b1;
 			Zero = 1'b1;
 			#10
+			// ForceJump = 0 y Branch = 1 y no se cumple condicional
+			Funct3 = 3'b000;
+			ForceJump = 1'b0;
+			Branch = 1'b1;
+			Zero = 1'b0;
+			#10
+			// ForceJump = 0 y Branch = 1
 			Funct3 = 3'b001;
 			ForceJump = 1'b0;
 			Branch = 1'b1;

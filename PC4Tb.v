@@ -20,5 +20,10 @@ module PC4Tb;
 		.PC4(PC4)
 	);
 	initial
-		PC = 0;      
+		begin
+			// Initialize Inputs
+			PC = 0; 
+			// Wait 100 ns for global reset to finish
+			#100;
+		end
 endmodule

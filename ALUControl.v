@@ -1,23 +1,14 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    11:56:56 01/11/2021 
-// Design Name: 
-// Module Name:    ALUControl 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+// Bloque que genera la señal para seleccionar cual operación debe relizar la ALU
+// Entradas: ALUOp, Funct7[5], Funct7[0] y Funct3.
+// Salidas: ALU_Control
+/*
+	Procedimiento:
+	Para cada tipo de instrucción se obtienen ciertos cambios en ALUOp, Funct7 y Funct3.
+	En el caso de Funct7, sólo hay cambios importantes en Funct7[5] y Funct7[0].
+	En función de dichas entradas se genera el valor correspondiente de la salida ALU_Control,
+	ya que se trata de una lógica combinacional.
+*/
 module ALUControl	(
 						input wire [3:0] ALUOp,
 						input wire Funct75,Funct70,
@@ -75,5 +66,6 @@ always @(*)
 		//#################################################################################
 		else
 			ALU_Control <= 5'b00000;																		//	Otros casos
+		//#################################################################################
 	end
 endmodule

@@ -24,11 +24,16 @@ module PCTb;
 	initial 
 	begin
 		// Initialize Inputs
+		clk = 0;
+		PC4 = 0; 
+		// Wait 100 ns for global reset to finish
+		#100;
+		// Add stimulus here
 		clk = 1;
 		PC4 = 0;
 		#10
 		PC4 = 4;
 	end
 	always
-		#5 clk =! clk;
+		#5 clk=!clk;
 endmodule

@@ -41,15 +41,17 @@ module RegisterFileTb;
 	initial 
 		begin
 			// Initialize Inputs
-			#15
-			clk = 1;
+			clk = 0;
 			reset = 0;
 			A1 = 0;						// Direccion 1 a leer
 			A2 = 0;						// Direccion 2 a leer
-			A3 = 10;						// Direccion a escribir
+			A3 = 15;						// Direccion a escribir
 			WE3 = 1;						// Enable para escritura
 			WD3 = 31;					// Valor a escribir
-			for(i=1;i<15;i=i+1)
+			// Wait 100 ns for global reset to finish
+			#100;
+			// Add stimulus here
+			for(i=0;i<15;i=i+1)
 				begin
 					A1=A1+1;
 					#2;
@@ -63,7 +65,7 @@ module RegisterFileTb;
 			reset = 1;
 		end
 	always 
-		#5 clk =! clk;
+		#5 clk=!clk;
 endmodule
 
 

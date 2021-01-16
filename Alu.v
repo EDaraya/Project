@@ -1,12 +1,16 @@
 `timescale 1ns / 1ps
-//	Bloque que realiza las siguientes operaciones: suma, resta, and, xor, sll(slli) y sra(srai)
-//	Entradas: Operandos RD1 y RD2, y ALU_Control el seleccionador de la op.  
-//	Salidas: Salida de la operación entre RD1 y RD2, y la bandera de zero 
-
+//	Bloque que realiza las siguientes operaciones: add, sub, and, xor, sll(slli), sra(srai) y lui
+//	Entradas: Operandos RD1 y RD2, y ALU_Control, el cual es el seleccionador de la operación.  
+//	Salidas: ALU_Result y Zero, los cuales son salida de la op y la bandera que indica si el resultado fue 0. 
+/*
+	Procedimiento:
+	Se realiza un case para cada valor de la señal ALU_Control y en cada caso se realiza la operación respectiva.
+	Al final, se revisa el valor de ALU_Result para establecer el valor de la bandera Zero.
+*/
 module Alu	(
 				input wire signed [31:0] RD1,RD2, 			//	ALU 32-bit Inputs                 
 				input wire [4:0] ALU_Control,					// ALU Selector
-				output reg signed[31:0] ALU_Result,			// ALU 32-bit Output
+				output reg signed [31:0] ALU_Result,			// ALU 32-bit Output
 				output wire Zero									// Bandera para condicional
 				);
 				

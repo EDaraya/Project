@@ -27,6 +27,10 @@ module ImmGeneratorTb;
 	initial 
 		begin
 			// Initialize Inputs
+			Inst = 0;
+			// Wait 100 ns for global reset to finish
+			#100; 
+			// Add stimulus here
 			Inst = 32'hfd010113;	// Tipo I
 			#10;
 			Inst = 32'h02812623;	// Tipo S

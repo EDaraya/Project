@@ -11,22 +11,20 @@ module RtypeTb;
 	// Inputs
 	reg clk;
 	reg reset;
-
-	// Outputs
-	wire [31:0] Out;
-
 	// Instantiate the Unit Under Test (UUT)
-	Rtype Rtype (
-    .clk(clk), 
-    .reset(reset), 
-    .Out(Out)
+	Rtype uut (
+		.clk(clk), 
+		.reset(reset)
     );
 
 	initial
 		begin
 			// Initialize Inputs
-			clk = 0;
+			clk = 1;
 			reset = 0;
+			// Wait 100 ns for global reset to finish
+			#100;
+			// Add stimulus here
 		end
    always
 		#5 clk=!clk;

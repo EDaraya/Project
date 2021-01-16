@@ -1,9 +1,13 @@
 `timescale 1ns / 1ps
-
-//Entradas: Numero con signo, numero sin signo y seleccionador
-//Salidas: Numero extendido
-//Procedimiento: se agarra el bit mas significativo de cada numero
-//y se concatena hasta llegar a los bits deseados.
+// Bloque que se encarga de generar los valores inmediatos dependiendo del tipo de operación. 
+// Entradas: Inst, Instrucción completa.
+// Salidas: Imm, inmediato de 32 bits.
+/* 
+	Procedimiento: 
+	Se ordenan los bits del valor inmediato según la tabla de especificaciones del RV32I y se extiende
+	en signo hasta finalmente obtener un dato de 32 bits.
+	Para el caso de LUI la extensión siempre es 0 y es la única extensión hacia la derecha.
+*/
 module ImmGenerator	(
 							input [31:0] Inst,
 							output reg signed [31:0] Imm

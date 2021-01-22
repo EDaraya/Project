@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 // Bloque del registro PC que pasa el valor de entrada hacia su salida por cada flanco positivo de reloj.
-// Entrada: PC y clk.
-//	Salida: NextPC.	
+// Entradas: PC y clk.
+//	Salidas: NextPC.	
 /* 
 	Procedimiento: 
 	Con el cambio del clk se actualiza la salida con el dato que se encuentra a la entrada.

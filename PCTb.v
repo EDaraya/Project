@@ -1,13 +1,13 @@
 `timescale 10ns / 1ps
+/*
+	Objetivo:
+Se busca probar que el valor del registro PC se actualice tras cada senal del clk.
 
-//Funcionalidad Testbench
-//Se busca que el valor se actualiza con la senal del clock
-
-//Procedimiento
-//Se inicializa el valor de PC4 en 0, y luego se cambia el valor a PC4 en 0
-//por lo tanto cuando el clock entre en flanco positivo, se actualizara el valor de
-//PCactualizado a PC4, en este caso 4..
-
+	Procedimiento:
+Se inicializa el valor de NextPC en 0, y luego se cambia el valor a NextPC = 4
+por lo tanto cuando el clk entre en flanco positivo, se debe actualizar el valor del
+PC al valor del NextPC, en este caso con un valor de 4.
+*/
 module PCTb;
 
 	// Inputs

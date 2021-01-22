@@ -1,27 +1,42 @@
 `timescale 1ns / 1ps
+/*
+Objetivo:
+	Probar que el modulo genera la salida correcta para cada caso.
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   11:38:34 01/11/2021
-// Design Name:   JumpControl
-// Module Name:   C:/Users/Eduardo/Desktop/Proyecto/Proyecto_Final/JumpControlTb.v
-// Project Name:  Proyecto_Final
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: JumpControl
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
-
+Procedimiento:
+	Se le asignan los distintos valores posibles de las entradas para observar los valores a la salida. 
+	A continuación se muestran los estimulos de entrada y el resultado esperado en cada caso.
+	
+	ForceJump = 0 y Branch = 0			BranchMux <= 1'b0;
+			Funct3 = 3'b111;
+			ForceJump = 1'b0;
+			Branch = 1'b0;
+			Zero = 1'b1;
+			#10
+	ForceJump = 1 y Branch = 0			BranchMux <= 1'b1;	jump
+			Funct3 = 3'b000;
+			ForceJump = 1'b1;
+			Branch = 1'b0;
+			Zero = 1'b1;
+			#10
+	ForceJump = 0 y Branch = 1			BranchMux <= 1'b1;	beq y se cumple cond
+			Funct3 = 3'b000;
+			ForceJump = 1'b0;
+			Branch = 1'b1;
+			Zero = 1'b1;
+			#10
+	ForceJump = 0 y Branch = 1 		BranchMux <= 1'b0; 
+			Funct3 = 3'b000;
+			ForceJump = 1'b0;
+			Branch = 1'b1;
+			Zero = 1'b0;
+			#10
+	ForceJump = 0 y Branch = 1			BranchMux <= 1'b1;	bne y se cumple cond
+			Funct3 = 3'b001;
+			ForceJump = 1'b0;
+			Branch = 1'b1;
+			Zero = 1'b0;
+*/
 module JumpControlTb;
 
 	// Inputs
@@ -62,12 +77,14 @@ module JumpControlTb;
 			Zero = 1'b1;
 			#10
 			// ForceJump = 0 y Branch = 1 y se cumple condicional
+			// beq
 			Funct3 = 3'b000;
 			ForceJump = 1'b0;
 			Branch = 1'b1;
 			Zero = 1'b1;
 			#10
 			// ForceJump = 0 y Branch = 1 y no se cumple condicional
+			// bne
 			Funct3 = 3'b000;
 			ForceJump = 1'b0;
 			Branch = 1'b1;

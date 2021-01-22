@@ -1,18 +1,17 @@
 `timescale 10ns / 1ps
+/*
+Objetivo:
+	Probar que el modulo de generación de valores inmmediatos funcione correctamente.
 
-//Funcionalidad del testbench
-//Observar que el modulo de extension funcione correctamente
-//dependiendo de su seleccionador.
-
-//Procedimiento
-//Posee un funcionamiento similar a un mux por lo tanto
-//se pondran diferentes numeros en las entradas,
-//luego se cambiara el seleccionador y se observara que la extension de
-//signo se este dando correctamente.
-//En este caso en el primer ciclo el seleccionador indica que el numero a
-//extender es A, por lo tanto la salida Extendido tendra el numero 10 extendido a 32bits.
-//luego sucede lo mismo con el numero en B-C y D.
-
+Procedimiento:
+	Se le envian una instrucción en hexadecimal para cada uno de los distintos tipos de instrcciones y se verifica 
+	que los valores inmediatos que son generados sean los correctos.
+	Tipo I: imm = -48
+	Tipo S: imm = 44
+	Tipo B: imm = 16
+	Tipo U: imm = 45056
+	Tipo J: imm = 12
+*/
 module ImmGeneratorTb;
 
 	// Inputs

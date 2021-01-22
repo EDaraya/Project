@@ -8,7 +8,8 @@
 */
 module Microarquitectura	( 
 									input clk,
-									input reset
+									input reset,
+									output wire [31:0] OutGPIO
 									);
 					
 //	Inicialización de variables para el módulo PC Regsiter y el PC Adder
@@ -34,7 +35,7 @@ InstructionMemory IM (										// Inicialización módulo Instruction Memory
 
 //	Inicializacion de variables para el módulo UC
 wire [6:0] Opcode;
-wire ForceJump,Branch,JumpPC,JumpRD,MemToReg,MemWrite,ALUscr,LUIscr,RegWrite;
+wire ForceJump,Branch,JumpPC,JumpRD,MemToReg,MemWrite,ALUscr,LUIscr,RegWrite,MemWrite2;
 wire [3:0] ALUOp;
 //	Asignacion de bits para la UC
 assign Opcode = Inst [6:0];								// Bist para establecer el Opcode
@@ -171,17 +172,29 @@ StoreLogic SL (												// Inicializacion módulo StoreLogic
 	 .BE(BE)														// Salida Byte Enable		
     );
 
+//	Inicializacion de variables del GPIO
+//wire [31:0] OutGPIO;
+GPIO GPIO (
+    .Ar(ALU_Result), 
+	 .MemWrite(MemWrite),
+    .WDr(NDS), 
+    .clk(clk), 
+    .Outr(OutGPIO)
+    );
+	 
 //	Inicializacion de variables para el módulo Data Memory.
 wire [31:0] RD;
+assign MemWrite2 = MemWrite&&(ALU_Result != 32'hABCD);
+
 DataMemory DM (												// Inicializacion módulo DataMemory
     .clk(clk), 												// Entrada clock
-    .WE(MemWrite), 											// Entrada WE
+    .WE(MemWrite2), 											// Entrada WE
 	 .BE(BE), 													// Entrada BE
 	 .A(ALU_Result), 											// Entrada de los últimos 2 bits de ALU_Result
     .WD(NDS), 													// Salida NewData
     .RD(RD)														// Salida RD
     );
-	 
+
 //	Inicializacion de variables para el módulo Load Logic. 
 wire [31:0] NDL;	 
 LoadLogic LL (													// Inicializacion módulo StoreLogic

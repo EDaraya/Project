@@ -3,7 +3,7 @@
 // Entradas: Inst, Instrucción completa.
 // Salidas: Imm, inmediato de 32 bits.
 /* 
-	Procedimiento: 
+Procedimiento: 
 	Se ordenan los bits del valor inmediato según la tabla de especificaciones del RV32I y se extiende
 	en signo hasta finalmente obtener un dato de 32 bits.
 	Para el caso de LUI la extensión siempre es 0 y es la única extensión hacia la derecha.

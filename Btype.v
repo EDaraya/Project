@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
-
-
+//Entradas: clk y reset
 module Btype 	( 
 					input clk,
 					input reset

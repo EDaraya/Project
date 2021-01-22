@@ -41,14 +41,14 @@ module DataMemory	(
 	// Lectura de un dato.(asíncrona)	
 	assign RD = {RAM[3][Ad],RAM[2][Ad],RAM[1][Ad],RAM[0][Ad]};
 	// Escritura de un dato.(síncrona)
-	always @(negedge clk) 		
+	always @(posedge clk) 		
 		if(WE == 1)
 	// Se escribe un byte.(sb)
 			case(BE)
 				4'b0001: RAM[0][Ad] <= WD[7:0];			// Byte 0
-				4'b0010: RAM[1][Ad] <= WD[15:8];			// Byte 1
-				4'b0100: RAM[2][Ad] <= WD[23:16];		// Byte 2
-				4'b1000: RAM[3][Ad] <= WD[31:24];		// Byte 3
+				4'b0010: RAM[1][Ad] <= WD[7:0];			// Byte 1
+				4'b0100: RAM[2][Ad] <= WD[7:0];			// Byte 2
+				4'b1000: RAM[3][Ad] <= WD[7:0];			// Byte 3
 	// Por defecto se escriben todos los bytes.(sw)
 				default:	begin
 								RAM[0][Ad] <= WD[7:0];

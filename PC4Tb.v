@@ -1,13 +1,12 @@
 `timescale 1ns / 1ps
+/*
+Objetivo:
+	Inicializar el valor de la entrada PC y verificar que a la salida PC4 se obtenga un valor de PC+4.
 
-//Funcionalidad Testbench
-//Se inicializa el valor y se corre esperando a que salga +4.
-
-//Procedimiento
-//Inicializar el valor de PC en 0 y lo que se espera
-//en la salida es el Valor inicial +4. En este caso como
-//se inicializa en 0, el valor de salida sera 4.
-
+Procedimiento:
+	Se Inicializa el valor de PC en 0 y lo que se espera en la salida PC4 es el valor inicial +4. 
+	En este caso como se inicializa en 0, el valor de salida esperado es 4.
+*/
 module PC4Tb;
 
 	// Inputs

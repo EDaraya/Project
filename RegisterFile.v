@@ -28,12 +28,12 @@ module RegisterFile	(
 	// Se inicializan los registros.
 	initial	
 		for(i=0;i<32;i=i+1)
-			reg_file[i] = i;
+			reg_file[i] = 32'b0;
 	//	Lectura del valor en el adress de memoria.(combinacional)
 	assign RD1 = reg_file[A1];	
    assign RD2 = reg_file[A2];	
 	//	Escritura en memoria.(secuencial)
-	always @(negedge clk)	
+	always @(posedge clk)	
 		begin
 			// Se reestablecen los registros a un valor de 32'b0.
 			if (reset == 1'b1)

@@ -11,7 +11,6 @@ Procedimiento:
 	Finalmente, se recorre todo el banco de registros y cuando se pasa por la posicion 10, RD1
 	debe tener el valor de 10 en decimal.
 */
-
 module RegisterFileTb;
 
 	// Inputs

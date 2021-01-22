@@ -1,37 +1,25 @@
 `timescale 1ns / 1ps
-
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   13:04:38 01/16/2021
-// Design Name:   Microarquitectura
-// Module Name:   C:/Users/Eduardo/Desktop/Proyecto/ProyectoMicroprocesador/ProyectoMicroprocesador/MicroarquitecturaTb.v
-// Project Name:  ProyectoMicroprocesador
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: Microarquitectura
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
-
+/*
+Objetivo:
+	Probar el correcto funcionamiento de las instrucciones de cada uno de los 6 códigos C suministrados.
+Procedimiento:
+	Ir al módulo de Instruction Memory y cambiar las instrucciones a cargar en la memoria mediante el 
+	cambio de los nombres de los rachivos txt de cada código C.
+	Para demostrar el funcionamiento se comprobó cada código con lo que se había obtenido con la crosscompilación
+	y con ello se testeó que los resultados en cada caso fueran los correctos.	
+*/
 module MicroarquitecturaTb;
 
 	// Inputs
 	reg clk;
 	reg reset;
-
+	
+	wire [31:0] OutGPIO;
 	// Instantiate the Unit Under Test (UUT)
 	Microarquitectura uut (
 		.clk(clk), 
-		.reset(reset)
+		.reset(reset),
+		.OutGPIO(OutGPIO)
 	);
 
 	initial 
@@ -45,5 +33,26 @@ module MicroarquitecturaTb;
 		end
    always
 		#5 clk=!clk;
+		
+	integer f,i;
+	initial
+		begin
+			//#280;
+			//f = $fopen("MemC1.txt","w");
+			//#230;
+			//f = $fopen("MemC2.txt","w");
+			//#210;
+			//f = $fopen("MemC3.txt","w");
+			//#260;
+			//f = $fopen("MemC4.txt","w");
+			//#320;
+			//f = $fopen("MemC5.txt","w");
+			//#380;
+			//f = $fopen("MemC6.txt","w");
+			for (i=-64;i<65;i=i+1)
+				$fwrite(f, "0x%h %h%h%h%h\n", 4*i, uut.DM.RAM[3][i], uut.DM.RAM[2][i], uut.DM.RAM[1][i], uut.DM.RAM[0][i]);
+			$fclose(f);
+			//$finish;
+		end
 endmodule
 

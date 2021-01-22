@@ -26,7 +26,8 @@ module InstructionMemory	(
   initial 
 	  begin
 		$display("Loading ROM.");
-		$readmemh("C1.txt", ROM);
+		//$readmemh(filename, memname, startadr, stopadr);
+		$readmemh("C6.txt", ROM);
 	  end
   // Lectura del dato en la dirección A		
   always @(*) 

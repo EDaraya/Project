@@ -1,3 +1,14 @@
+`timescale 1ns / 1ps
+/*
+Objetivo:
+	Inicializar el módulo con un Opcode y probar que a la salida se obtienen los valores esoerados de las distintas
+	señales de control.
+
+Procedimiento:
+	Se Inicializa el valor de la entrada Opcode para cada uno de los distintos tipos de instrucciones.
+	Es decir, se coloca un Opcode para las instrucciones tipo R, I, S, B, U y las J.
+	Para probar su funcionamiento, se tomaron los Opcodeas de los hexadecimales de los códigos de C suminstrados.   
+*/
 module UCTb;
 
     // Inputs

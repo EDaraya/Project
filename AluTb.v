@@ -5,10 +5,8 @@ Objetivo:
 Procedimiento:
 	Se inicializan las entradas RD1, RD2 y ALU_Control.
 	Esta última se inicia en 5'b00000 y se realiza un bucle FOR para ir aumentado su valor y así poder ver resultados.
-*/
-
-/*
- CASO #1 
+	
+CASO #1 
  RD1 = 5,	RD2 = 3
  ALU_Control: 
 				5'b00000:	ADD => RD1 + RD2 y se guarda en Result, Result = 32'd8.

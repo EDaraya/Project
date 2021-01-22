@@ -7,9 +7,8 @@ Procedimiento:
 	Escribir datos en distintas addres y comprobar que la salida posea el valor de estos.
 	En esta prueba debido a que WE es 1, el primer valor a esperar en RD es el valor de 15 en el byte más significativo. 
 	Este valor debe escribirse en el otro ciclo de reloj, por lo tanto
-	RD tendra un momento un valor indeterminado.Luego sucede lo mismo con el valor de 10.
+	RD tendra un momento un valor indeterminado. Luego sucede lo mismo con el valor de 10.
 */
-
 module DataMemoryTb;
 
 	// Inputs

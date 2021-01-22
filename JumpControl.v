@@ -5,7 +5,7 @@
 /*
 	Procedimiento:
 	Si se trata de un Jump la salida siempre debe ser 1, y en caso de un Branch la salida sólo es 1
-	si el condicional sí se cumple 
+	si el condicional sí se cumple. En todos los demás la salida es cero. 
 */
 module JumpControl	(
 							input [2:0] Funct3,

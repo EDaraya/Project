@@ -1,27 +1,48 @@
 `timescale 1ns / 1ps
+/*
+Objetivo:
+	Probar que el modulo genera la señal de control de la ALU correcta para cada tipo de operación.
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   15:11:54 01/11/2021
-// Design Name:   ALUControl
-// Module Name:   C:/Users/Eduardo/Desktop/Proyecto/Proyecto_Final/ALUControlTb.v
-// Project Name:  Proyecto_Final
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: ALUControl
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
-
+Procedimiento:
+	Se le envían los valores de las entradas para cada tipo de operación, y se verifica el valor de la salida ALU_Control.
+	A continuación se muestra las entradas y para cada caso el valor esperado de la salida.
+	
+	// add							ALU_Control <= 5'b00000;
+			ALUOp = 4'b0110;
+			Funct75 = 1'b0;
+			Funct70 = 1'b0;
+			Funct3 = 3'b000;
+			#10
+	// xori							ALU_Control <= 5'b10000;
+			ALUOp = 4'b0010;
+			Funct75 = 1'b0;
+			Funct70 = 1'b0;
+			Funct3 = 3'b100;
+			#10
+	// sb								ALU_Control <= 5'b00000;
+			ALUOp = 4'b0100;
+			Funct75 = 1'b0;
+			Funct70 = 1'b0;
+			Funct3 = 3'b000;
+			#10
+	// bne							ALU_Control <= 5'b10000;
+			ALUOp = 4'b1100;
+			Funct75 = 1'b0;
+			Funct70 = 1'b0;
+			Funct3 = 3'b001;
+			#10			
+	// lui							ALU_Control <= 5'b11111;
+			ALUOp = 4'b0111;
+			Funct75 = 1'b0;
+			Funct70 = 1'b0;
+			Funct3 = 3'b000;
+			#10
+	// jal							ALU_Control <= 5'b00000;
+			ALUOp = 4'b1101;
+			Funct75 = 1'b1;
+			Funct70 = 1'b1;
+			Funct3 = 3'b111;
+*/
 module ALUControlTb;
 
 	// Inputs

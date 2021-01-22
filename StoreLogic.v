@@ -21,14 +21,7 @@ reg [31:0] Word;
 
 always @(*)
 	begin
-		// Se almacena el byte menos significativo de RD2 en la posición adecuada y se extiende a 32 bits.
-		case(ALU)
-			2'b00:	Word <= {24'b0,D[7:0]};
-			2'b01:	Word <= {16'b0,D[7:0],8'b0};	
-			2'b10:	Word <= {8'b0,D[7:0],16'b0};	
-			2'b11:	Word <= {D[7:0],24'b0};		
-			default:	Word <= 32'b0;
-		endcase
+		Word <= {24'b0,D[7:0]};
 		// Se almacena la palabra completa o el byte extendido a 32 bist.(sw/sb)	
 		case(DT)
 			1'b0:		ND <= Word;

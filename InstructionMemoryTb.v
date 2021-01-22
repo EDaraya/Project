@@ -1,13 +1,12 @@
 `timescale 10ns / 1ps
-//	Instruction Memory Testbench
 /*	
 Objetivo:
 	Desmostrar la correcta lectura de datos en los distintos registros
-	del conjunto del número de instrucciones. Ademas para comprobar la correcta fucionalidad del reset.
+	del conjunto del número de instrucciones.
 Procedimiento:
 	Debido al funcionamiento en la memoria de instruciones, esta avanza cada +4, entonces se tiene que esperar que
 	A recorra 4 ciclos o avance 4 numeros para obtener la siguiente instruccion.
-	El resultado esperado es ver como RD posee diferentes valores cada 4 velores de A.
+	El resultado esperado es ver como RD posee diferentes valores cada 4 valores de A, ya que cada +4 es una instrucción.
 */
 module InstructionMemoryTb;
 
